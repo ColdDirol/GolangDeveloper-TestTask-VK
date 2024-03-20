@@ -3,6 +3,7 @@ package flood_control
 import (
 	"GolangDeveloper-TestTask-VK/internal/config"
 	"context"
+	"fmt"
 	"github.com/redis/go-redis/v9"
 	"strconv"
 	"sync"
@@ -39,7 +40,9 @@ func (fc *FloodControlImpl) Check(ctx context.Context, userID int64) (bool, erro
 	defer fc.mutex.Unlock()
 
 	// Проверяем количество вызовов за последние N секунд из Redis
+	// .ZCount(ctx, key, min, max)
 	count, err := fc.client.ZCount(ctx, "requests:"+strconv.FormatInt(userID, 10), strconv.FormatInt(intervalStart.Unix(), 10), strconv.FormatInt(currentTime.Unix(), 10)).Result()
+	fmt.Println(count)
 	if err != nil {
 		return false, err
 	}

@@ -33,7 +33,7 @@ func main() {
 
 	for {
 		userID := count
-		for j := 0; j < 10; j++ {
+		for j := 0; j < config.IntervalSeconds+config.MaxRequests; j++ {
 			ok, err := fc.Check(ctx, userID)
 			if err != nil {
 				//fmt.Printf("Error checking flood control: %v\n", err)
