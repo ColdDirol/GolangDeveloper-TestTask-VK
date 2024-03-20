@@ -1,0 +1,11 @@
+{
+  "env": "dev",
+  "interval_seconds": 10,
+  "max_requests": 3,
+  "redis": {
+    "host": "localhost",
+    "port": "6379",
+    "password": "",
+    "db": 0
+  }
+}
